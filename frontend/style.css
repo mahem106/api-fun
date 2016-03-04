@@ -1,0 +1,27 @@
+body {
+  background-color: rgba(125, 113, 255, 0.6);
+}
+
+.divider {
+  visibility: hidden;
+}
+
+.input-field label {
+  font-style: italic;
+  color: black;
+}
+
+.dateLabel {
+  font-size: 1em;
+  font-style: italic;
+  color: black;
+}
+
+textarea.materialize-textarea:disabled {
+    color: black;
+    border-bottom: 1px dotted rgba(0,0,0,0.00)
+}
+
+input[type=email]:focus:not([readonly]), input:-webkit-autofill {
+  background-color: rgba(125, 113, 255, 0.0);
+}
