@@ -6,7 +6,7 @@ body {
   visibility: hidden;
 }
 
-.input-field label {
+.input-field label, label {
   font-style: italic;
   color: black;
 }

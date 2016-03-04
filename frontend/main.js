@@ -1,11 +1,10 @@
 'use strict';
 
 $(function(init) {
-  console.log('init');
   $('#emailButton').click(getEmail);
   $('#countsButton').click(getCounts);
   $('#dateButton').click(getDate);
-
+  $('#mathButton').click(doMath);
 })
 
 function getEmail() {
@@ -57,9 +56,32 @@ function getDate() {
   });
 }
 
+function doMath() {
+  var numArray = $('#math').val().split(',');
+  var param;
+  var nums;
+    if(numArray.length === 1) {
+      param = 'square';
+      nums = numArray[0]
+    } else {
+      param = 'sum';
+      nums = numArray.join('/');
+    }
+
+  $.ajax({
+    method: 'GET',
+    url: 'http://localhost:8001/' + param + '/' + nums,
+    success: function(response) {
+      var parsedData = JSON.parse(response);
+      setMath(parsedData);
+    },
+    error: function(error) {
+      console.error('error: ', error);
+    }
+  });
+}
 
 function setEmail(data) {
-  // $('#emailResponse').text(data);
   $('#email').val(data);
 }
 
@@ -75,4 +97,8 @@ function setDate(data) {
   var age = data.age;
   var date = data.date;
   $('#dateResponse').text('Age:  ' + age + '    |    ' + 'Born:  ' + date);
+}
+
+function setMath (data) {
+  $('#math').val(data);
 }
